@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package calculator;
+
+service CalculatorService {
+    rpc Add(Numbers) returns (Response) {}
+    rpc Subtract(Numbers) returns (Response) {}
+    rpc Multiply(Numbers) returns (Response) {}
+    rpc Divide(Numbers) returns (Response) {}
+}
+
+message Numbers {
+    repeated int32 numbers = 1;
+}
+
+message Response {
+    bool Created = 1;
+    double Result = 2;
+    string exception = 3;
+}
