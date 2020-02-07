@@ -22,11 +22,10 @@ func main() {
 
 	client := pb.NewCalculatorServiceClient(conn)
 
-	r, err := client.Add(context.Background(), &pb.Numbers{3, 4})
+	r, err := client.Add(context.Background(), &pb.Numbers{A: 3, B: 4})
 
 	if err != nil {
 		log.Fatalf("Could not greet : %v", err)
 	}
-
-	log.Printf("Calculated : %t", r)
+	log.Printf("Calculated : %v", r)
 }
