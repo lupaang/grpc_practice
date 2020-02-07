@@ -5,13 +5,12 @@ import (
 
 	"context"
 
-	pb "./proto/test"
+	pb "../calculator-proto"
 	"google.golang.org/grpc"
 )
 
 const (
-	address         = "localhost:60000"
-	defaultFileName = "number.json"
+	address = "localhost:60000"
 )
 
 func main() {
@@ -21,13 +20,13 @@ func main() {
 	}
 	defer conn.Close()
 
-	client := pb.NewCalculatorClient(conn)
+	client := pb.NewCalculatorServiceClient(conn)
 
-	r, err := client.Add(context.Background(), numbers)
+	r, err := client.Add(context.Background(), &pb.Numbers{3, 4})
 
 	if err != nil {
 		log.Fatalf("Could not greet : %v", err)
 	}
 
-	log.Printf("Created : %t", r)
+	log.Printf("Calculated : %t", r)
 }
